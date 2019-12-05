@@ -12,6 +12,8 @@ matrix:
   include:
     - php: 7.2
       env: PRESTASHOP_VERSION=1.7.3.0
+    - php: 7.2
+      env: PRESTASHOP_VERSION=1.7.1.2
 
 cache:
   directories:
