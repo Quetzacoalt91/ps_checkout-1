@@ -16,6 +16,8 @@ jobs:
         run: composer install --no-dev -o
       - name: Clean-up project
         uses: PrestaShopCorp/github-action-clean-before-deploy@dev
+        with:
+          path: "docs upgrade"
       - name: Create & upload artifact
         uses: actions/upload-artifact@v1
         with:
