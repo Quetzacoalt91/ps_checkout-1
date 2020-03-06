@@ -35,7 +35,7 @@ class ps_checkoutDispatchWebHookModuleFrontController extends ModuleFrontControl
     /**
      * Id coming from PSL
      *
-     * @var int
+     * @var string
      */
     private $shopId;
 

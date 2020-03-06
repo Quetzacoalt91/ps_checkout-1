@@ -115,6 +115,7 @@ class ValidateOrder
             $payload['paymentMethod']
         );
 
+        // TODO: fix this for 1.6 ?
         if ($orderState === _PS_OS_PAYMENT_) {
             $this->setTransactionId($module->currentOrderReference, $response['body']['id']);
         }
@@ -188,7 +189,7 @@ class ValidateOrder
      * @param string $status
      * @param string $paymentMethod can be 'paypal' or 'card'
      *
-     * @return string|bool order state id to set to the order depending on the status return by paypal
+     * @return int order state id to set to the order depending on the status return by paypal
      */
     private function setOrderState($orderId, $status, $paymentMethod)
     {
@@ -221,7 +222,7 @@ class ValidateOrder
      *
      * @param string $paymentMethod can be 'paypal' or 'card'
      *
-     * @return int|bool id state
+     * @return int id state
      */
     private function getPendingStatusId($paymentMethod)
     {

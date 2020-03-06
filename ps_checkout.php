@@ -156,8 +156,6 @@ class Ps_checkout extends PaymentModule
             return $this->registerHook(self::HOOK_LIST_16) &&
                 $this->updatePosition(\Hook::getIdByName('payment'), false, 1);
         }
-
-        return true;
     }
 
     /**
@@ -277,7 +275,7 @@ class Ps_checkout extends PaymentModule
      */
     public function hookDisplayPersonalInformationTop()
     {
-        if (!version_compare(_PS_VERSION_, '1.7.6.0', '>=')) {
+        if (version_compare(_PS_VERSION_, '1.7.6.0', '<')) {
             return false;
         }
 
@@ -547,7 +545,7 @@ class Ps_checkout extends PaymentModule
 
     /**
      * Tells if we are in the Payment step from the order tunnel.
-     * We use the ReflectionObject because it only exists from Prestashop 1.7.7
+     * We use the ReflectionObject because it only exists from Prestashop 1.7.6
      *
      * @return bool
      */
@@ -567,7 +565,7 @@ class Ps_checkout extends PaymentModule
 
     /**
      * Get all existing Payment Steps from front office.
-     * Use ReflectionObject before Prestashop 1.7.7
+     * Use ReflectionObject before Prestashop 1.7.6
      * From Prestashop 1.7.7 object checkoutProcess is now public
      *
      * @return array
@@ -577,7 +575,10 @@ class Ps_checkout extends PaymentModule
         $isPrestashop177 = version_compare(_PS_VERSION_, '1.7.7.0', '>=');
 
         if (true === $isPrestashop177) {
-            return $this->context->controller->getCheckoutProcess()->getSteps();
+            /** @var \OrderController $controller */
+            $controller = $this->context->controller;
+
+            return $controller->getCheckoutProcess()->getSteps();
         }
 
         /* Reflect checkoutProcess object */

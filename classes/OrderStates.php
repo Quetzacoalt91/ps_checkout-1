@@ -174,7 +174,7 @@ class OrderStates
      * @param string $state
      * @param int $orderStateId
      *
-     * @return false|void
+     * @return bool
      */
     private function setStateIcons($state, $orderStateId)
     {
@@ -200,6 +200,10 @@ class OrderStates
 
         if (false === copy($iconToCopy, $iconToPaste)) {
             \PrestaShopLogger::addLog('[PSPInstall] not able to copy ' . $iconName . ' for ID ' . $orderStateId, 2, null, null, null, true);
+
+            return false;
         }
+
+        return true;
     }
 }

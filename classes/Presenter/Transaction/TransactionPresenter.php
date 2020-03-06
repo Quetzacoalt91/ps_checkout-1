@@ -36,6 +36,7 @@ class TransactionPresenter implements PresenterInterface
     public function present()
     {
         $link = new LinkAdapter();
+        /** @var array $transactions */
         $transactions = $this->getTransactions();
 
         foreach ($transactions as &$transaction) {
@@ -80,7 +81,7 @@ class TransactionPresenter implements PresenterInterface
      *
      * @param string $orderReference
      *
-     * @return string
+     * @return array
      */
     private function getUserInfos($orderReference)
     {

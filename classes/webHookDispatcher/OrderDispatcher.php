@@ -44,7 +44,7 @@ class OrderDispatcher implements Dispatcher
     {
         $psOrderId = $this->getPrestashopOrderId($payload['orderId']);
 
-        if (false === $psOrderId) {
+        if (0 >= $psOrderId) {
             return false;
         }
 
@@ -72,7 +72,7 @@ class OrderDispatcher implements Dispatcher
      *
      * @param string $orderId paypal order id
      *
-     * @return bool|int
+     * @return int
      */
     private function getPrestashopOrderId($orderId)
     {

@@ -158,8 +158,6 @@ class PaypalAccount
 
     /**
      * Setter for paypalPaymentStatus
-     *
-     * @return int|string $status
      */
     public function setPaypalPaymentStatus($status)
     {
@@ -168,8 +166,6 @@ class PaypalAccount
 
     /**
      * Setter for cardPaymentStatus
-     *
-     * @return string $status
      */
     public function setCardPaymentStatus($status)
     {

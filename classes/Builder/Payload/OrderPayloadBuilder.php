@@ -267,8 +267,6 @@ class OrderPayloadBuilder extends Builder implements PayloadBuilderInterface
 
     /**
      * Build the paypal items node
-     *
-     * @return array
      */
     public function buildItemsNode()
     {

@@ -19,7 +19,6 @@
  */
 use PrestaShop\Module\PrestashopCheckout\Handler\CreatePaypalOrderHandler;
 use PrestaShop\Module\PrestashopCheckout\PaypalCountryCodeMatrice;
-use PrestaShop\Module\PrestashopCheckout\PaypalOrder;
 
 class ps_checkoutExpressCheckoutModuleFrontController extends ModuleFrontController
 {
@@ -118,7 +117,7 @@ class ps_checkoutExpressCheckoutModuleFrontController extends ModuleFrontControl
         $paypalAddress = $this->addressAlreadyExist('PayPal', $this->context->customer->id);
 
         if (false !== $paypalAddress) {
-            $address = new \Address($paypalAddress); // if yes, update it with the new address
+            $address = new \Address((int) $paypalAddress); // if yes, update it with the new address
         } else {
             $address = new \Address(); // otherwise create a new address
         }
@@ -155,7 +154,7 @@ class ps_checkoutExpressCheckoutModuleFrontController extends ModuleFrontControl
      * @param string $alias
      * @param int $id_customer
      *
-     * @return int
+     * @return string|false|null
      */
     private function addressAlreadyExist($alias, $id_customer)
     {
@@ -171,8 +170,6 @@ class ps_checkoutExpressCheckoutModuleFrontController extends ModuleFrontControl
 
     /**
      * Ajax: Create and return paypal order
-     *
-     * @return string $paypalOrder
      */
     public function displayAjaxCreatePaypalOrder()
     {
