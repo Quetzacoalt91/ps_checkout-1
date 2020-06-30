@@ -19,9 +19,6 @@
  */
 require_once __DIR__ . '/vendor/autoload.php';
 
-if (!defined('_PS_VERSION_')) {
-    exit;
-}
 
 class Ps_checkout extends PaymentModule
 {
