@@ -1,0 +1,9 @@
+name: Github Action test
+on: [push, pull_request]
+jobs:
+  php-linter:
+    name: HitHub Action test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report error globally
+        run: echo ::error ::Something went wrong, but this error is not file specific
