@@ -1,0 +1,27 @@
+name: Publish to the Marketplace
+
+on:
+  release:
+    action: [released]
+
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download release asset
+        uses: dsaltares/fetch-gh-release-asset@0.0.4
+        with:
+          repo: ${{ github.event.repository.full_name }}
+          version: ${{ github.event.release.tag_name }}
+          file: ${{ github.event.repository.name }}.zip
+
+      - name: Prepare publishing tool
+        run: |
+          git clone --branch= add-debug-and-dry-mode https://github.com/Quetzacoalt91/publish-on-marketplace.git
+          popd publish-on-marketplace
+          composer install
+          pushd
+
+      - name: Release zip
+        run: |
+          php publish-on-marketplace/bin/publish-on-marketplace --archive=$PWD/${{ github.event.repository.name }}.zip --metadata-json=$PWD/.github/mktp-metadata.json --changelog="${{ github.event.release.body }}" --dry-run
